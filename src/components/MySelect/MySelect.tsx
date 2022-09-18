@@ -1,6 +1,7 @@
 import React, {FC} from "react";
 import {InputNumber, Select} from "antd";
 import styles from "./MySelect.module.scss";
+import {useMediaQuery} from "react-responsive";
 const {Option} = Select;
 
 
@@ -25,12 +26,16 @@ export const MySelect: FC<TypeMySelect> = React.memo(({
                                                rucurrency
                                            }) => {
 
+    const isMobile = useMediaQuery({
+        query: "(max-width: 786px)"
+    });
+
     return (
 
         <>
             <div className={styles.select}>
                 <InputNumber
-                    style={{width: 200}}
+                    style={isMobile ? {width: 140} : {width: 180}}
                     size='large'
 
                     value={value}
@@ -41,7 +46,7 @@ export const MySelect: FC<TypeMySelect> = React.memo(({
                     <Select
                         size='large'
                         defaultValue={currency}
-                        style={{width: 200}}
+                        style={isMobile ? {width: 140} : {width: 180}}
                         onChange={(valute: string) => {
                             onChangeCurrency(valute)
                         }}

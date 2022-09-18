@@ -15,15 +15,12 @@ function App() {
       ? locale[userLang as keyof typeof locale]
       : "USD");
   const [targetCurrency, setTargetCurrency] = useState<string | null>(null);
-
   const [basePrice, setBasePrice] = useState<number>(0);
   const [targetPrice, setTargetPrice] = useState<number>(0);
-
   const [rates, setRates] = useState<TRates>({})
 
 
   useEffect(  () => {
-
     const getData = async () => {
       await axios.get(BASE_URL)
           .then((res) => {
